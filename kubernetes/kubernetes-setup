@@ -1,0 +1,38 @@
+
+#Install Minikube - Linux x86-64
+***************
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+***************
+
+
+#Install Kubectl
+*************** 
+##update and install needed packages for kubernetes
+sudo apt-get install -y apt-transport-https ca-certificates curl
+
+##download the google public signing key
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+##add the kubernetes app repo
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+##update apt index with new repo and install kubectlx
+sudo apt-get update
+sudo apt-get install -y kubectl
+*************** 
+
+
+#Start Minikube Cluster
+***************
+minikube start
+*************** 
+
+
+#Install K3s (Lite kubernetes Platform)
+******************************************
+##K3d - Install latest release
+wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+
+******************************************

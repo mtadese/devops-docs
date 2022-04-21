@@ -1,0 +1,42 @@
+
+#Installing Docker on Ubuntu Linux 
+************************ 
+##allow docker to communicate through https
+sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+
+##download GPG key for docker and install
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint
+
+##add a repository called "stable"
+sudo add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"
+sudo apt update
+
+##install Docker (community edition)
+sudo apt-get install docker-ce docker-ce-cli containerd.io 
+
+##add docker group and add users to the group
+sudo groupadd docker
+sudo usermod -aG docker username
+
+##verify docker installation was successful
+docker run hello-world
+docker images
+************************
+
+
+#Uninstalling Docker
+************************ 
+dpkg -l | grep -i docker
+sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli 
+sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
+************************
+
